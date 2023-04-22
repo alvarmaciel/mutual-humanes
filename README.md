@@ -1,5 +1,73 @@
 # CRUD of Socies of Humano Mutual
+# Dominios
 
+## Descripción del domino de Socies
+Tenemos que crear una Graphql API para la Mutual Humano.
+La mutual cuenta con socios productores y socios que compran. Para diferenciar estos tipos se propone usar la
+categoría `Plenos` para los socios productores y `Generales` para los compradores.
+Todos los socios tienen que pagar una cuota mensual, hay que llevar registro de esto pagos.
+Si un socio no pagó la cuota mensual por mas de tres meses pasa a esta `inactivo`
+Se activa pagando la cuota del mes en curso.
+Existe otro tipo de sujetos, los proveedores, que no son socios de la mutual, a estos se los denomina proveedores
+Los socies tienen:
+
+- Nombre(o)<sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup>
+- apellido(o)
+- emprendimiento
+- dni(o)
+- codigo(o)
+- domicilio
+- codigo postal
+- telefono
+- email
+- Puede estar Activo o No(o) default activo
+- Puede ser Pleno o No(o) sin default
+
+Los proveedores tienen
+
+- Nombre(o)<sup><a id="fnr.1.100" class="footref" href="#fn.1" role="doc-backlink">1</a></sup>
+- apellido(0)
+- emprendimiento
+- rubro
+- cuil/cuit(o)
+- codigo(o)
+- domicilio
+- codigo postal
+- telefono
+- email
+
+Nuestra api debe poder:
+- crear un socio.
+- modificar un socio.
+- eliminar un socio.
+- listar todos los socios por:
+    - activos
+    - inactivos
+    - plenos
+    - generales
+- listar un socio por.
+    - dni
+    - codigo
+    - email
+- crear un proveedor.
+- modificar un proveedor.
+- eliminar un proveedor.
+- listar todos los proveedores.
+  - rubro
+- listar un proveedor.
+  - nombre
+  - apellido
+  - emprendimiento
+  - cuil/cuit
+  - código
+
+- La api debe poder informar automaticamente si un socio esta activo o no.
+- La api debe tener contar con un sistema de autenticación y autorización de usarios.
+- Los usuarios pueden tener roles de administrador o de usuario.
+- Los usuarios administradores pueden crear, modificar, listar y eliminar usuarios.
+- Los usuarios administradores pueden crear, modificar, listar y eliminar socios y proveedores.
+- Los usuarios no adminstradores solo pueden listar socios y proveedores.
+ 
 ## Project Requirements:
 
 1. Build a CRUD API using Python and FastAPI framework.
@@ -40,41 +108,7 @@ FastAPI framework, and we can write Gherkin syntax feature files that describe t
 Let me know if you have any questions or concerns. We can proceed with the above steps and create a great API for your
 project.
 
-# Dominios
 
-## Descripción del domino de Socies
-
-La mutual cuenta con socios productores y socios que compran. Para diferenciar estos tipos se propone usar la
-categoría `Plenos` para los socios productores y `Generales` para los compradores.
-Todos los socios tienen que pagar una cuota mensual, hay que llevar registro de esto pagos.
-Si un socio no pagó la cuota mensual por mas de tres meses pasa a esta `inactivo`
-Se activa pagando la cuota del mes en curso.
-Existe otro tipo de sujetos, los proveedores, que no son socios de la mutual, a estos se los denomina proveedores
-Los socies tienen:
-
-- Nombre(o)<sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup>
-- apellido(o)
-- emprendimiento
-- dni(o)
-- codigo(o)
-- domicilio
-- codigo postal
-- telefono
-- email
-- Puede estar Activo o No(o) default activo
-- Puede ser Pleno o No(o) sin default
-
-Los proveedores tienen
-
-- Nombre(o)<sup><a id="fnr.1.100" class="footref" href="#fn.1" role="doc-backlink">1</a></sup>
-- apellido(0)
-- emprendimiento
-- dni(o)
-- codigo(o)
-- domicilio
-- codigo postal
-- telefono
-- email
 
 # Footnotes
 
