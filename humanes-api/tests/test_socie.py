@@ -46,7 +46,7 @@ def new_socie():
         telefono="12345678",
         email="mimail@mail.com",
         activated=True,
-        tipo="pleno", )
+        tipo="pleno",)
 
 
 def test_create_socie(new_socie):
@@ -54,7 +54,7 @@ def test_create_socie(new_socie):
     assert isinstance(new_socie, Socie)
 
 
-def test_socie_activatesd_is_false_when_last_couta_more_that_3_month_of_today(new_socie):
+def test_socie_activatesd_is_false_when_last_cuota_more_that_3_month_of_today(new_socie):
     # Setup
     new_socie = new_socie
     socie_cuota_payed = [
