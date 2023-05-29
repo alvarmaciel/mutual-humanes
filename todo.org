@@ -14,8 +14,8 @@ una persona es un socio
 - [x] test caja and cashier
 - [x] Refactor invoices
 * Iteracion 3
-- [ ] Proveedores
-- [ ] excepciones
+- [ ] agregar Proveedores
+- [ ] agregar excepciones (las deberia haber puesto antes)
 * To the recap
 - [ ] get list of invoices by socies
 - [ ] get list of invoices by filter
