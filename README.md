@@ -4,7 +4,7 @@
 ## Descripción del domino de Socies
 Tenemos que crear una Graphql API para la Mutual Humano.
 - La mutual cuenta con socios productores y socios que compran. Para diferenciar estos tipos se propone usar la
-- categoría `Plenos` para los socios productores y `Generales` para los compradores.
+- categoría `adherente` para los socios productores y `humane` para los compradores.
 - Todos los socios tienen que pagar una cuota mensual, hay que llevar registro de esto pagos.
 - Si un socio no pagó la cuota mensual por más de tres meses pasa a estar `inactivo`.
 - Esto lo sabemos cuando consultamos el estado de un socio.
