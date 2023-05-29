@@ -1,0 +1,11 @@
+* Socies test
+Necesito tener un cajero que:
+cobre una cuota
+que emita un recibo a la persona que paga
+que guarde una copia del recibo en la caja
+
+un cajero es un socio
+una persona es un socio
+* Iteration 1
+- [ ] Refactor invoices
+
