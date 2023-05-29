@@ -1,14 +1,9 @@
-import pytest
 import string
 import random
 from datetime import date
 from humanes.domain.socies import Socie
 from humanes.domain.caja import Cashier
 from humanes.domain.caja import Caja
-
-
-
-
 
 
 def create_new_socie(tipo="pleno", activated=True):
@@ -25,7 +20,7 @@ def create_new_socie(tipo="pleno", activated=True):
         telefono=''.join(random.choice(numbers) for _ in range(length)),
         email=''.join(random.choice(letters) for _ in range(length)),
         activated=activated,
-        tipo=tipo,)
+        tipo=tipo, )
     return socie
 
 
@@ -83,6 +78,7 @@ def test_cashier_can_register_a_payed_cuota_in_caja():
     # Verify
     assert caja.total == 100
 
+
 def test_cashier_can_emit_a_recipie_and_save_it_in_caja():
     # Setup
     cashier = Cashier(create_new_socie(tipo="pleno", activated=True))
@@ -98,6 +94,7 @@ def test_cashier_can_emit_a_recipie_and_save_it_in_caja():
     assert len(caja.invoices) == 1
     assert caja.invoices[0] == {"socie": socie, "date": today, "amount": 100}
 
+
 def test_cashier_can_emit_a_recipie_and_save_it_in_socie():
     # Setup
     cashier = Cashier(create_new_socie(tipo="pleno", activated=True))
@@ -112,6 +109,7 @@ def test_cashier_can_emit_a_recipie_and_save_it_in_socie():
     assert caja.total == 100
     assert len(socie.invoices) == 1
     assert socie.invoices[0] == {"socie": socie, "date": today, "amount": 100}
+
 
 def test_cashier_can_emit_a_recipie_and_save_it_in_caja_and_socie():
     # Setup
@@ -130,3 +128,25 @@ def test_cashier_can_emit_a_recipie_and_save_it_in_caja_and_socie():
     assert len(caja.invoices) == 1
     assert caja.invoices[0] == {"socie": socie, "date": today, "amount": 100}
     assert socie.cuotas == [{"date": date(2022, 1, 1), "amount": 100}]
+
+
+def test_cashier_can_get_all_invoices_by_socie():
+    # Setup
+    caja = Caja()
+    cashier = Cashier(create_new_socie(tipo="pleno", activated=True), caja)
+    date(2022, 6, 1)
+    socie = create_new_socie(tipo="General", activated=True)
+    cuota_1 = {"date": date(2022, 1, 1), "amount": 100}
+    cuota_2 = {"date": date(2022, 2, 1), "amount": 100}
+    cuota_3 = {"date": date(2022, 3, 1), "amount": 100}
+    socie.cuotas = [cuota_1, cuota_2, cuota_3]
+    caja.invoices = [{"socie": socie, "date": cuota_1["date"], "amount": cuota_1["amount"]},
+                     {"socie": socie, "date": cuota_2["date"], "amount": cuota_2["amount"]},
+                     {"socie": socie, "date": cuota_3["date"], "amount": cuota_3["amount"]}]
+    caja = Caja()
+    # Exercise
+    socie_invoices = cashier.get_all_invoices_by_socie({"socie": socie})
+
+    # Verify
+    assert len(socie_invoices) == len(socie.invoices)
+    assert socie_invoices == socie.invoices

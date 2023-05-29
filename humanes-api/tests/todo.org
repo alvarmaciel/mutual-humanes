@@ -7,5 +7,6 @@ que guarde una copia del recibo en la caja
 un cajero es un socio
 una persona es un socio
 * Iteration 1
-- [ ] Refactor invoices
-
+- [x] Refactor invoices
+* Iteration 2
+- [ ] get list of invoices by socies
