@@ -1,4 +1,4 @@
-* Socies test
+* Socies test Notas
 Necesito tener un cajero que:
 cobre una cuota
 que emita un recibo a la persona que paga
@@ -6,7 +6,14 @@ que guarde una copia del recibo en la caja
 
 un cajero es un socio
 una persona es un socio
-* Iteration 1
-- [x] Refactor invoices
+* Capitulo 1 Domain Modeling
+** Iteration 1
+- [x] tests for socies and cuotas
+- [x] refactor socies and cuotas
 * Iteration 2
+- [x] test caja and cashier
+- [x] Refactor invoices
+* To the recap
 - [ ] get list of invoices by socies
+- [ ] get list of invoices by filter
+*
