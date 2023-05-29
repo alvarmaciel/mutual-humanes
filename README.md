@@ -89,26 +89,9 @@ Nuestra api debe poder:
 6. Strict Test Driven Development will be used with tests written before implementation.
 
 ## Project Deliverables:
-
-1. Install required dependencies like Python, FastAPI, and Strawberry.
-2. Write scope of the domanin.
-3. Write user stories cards
-2. Write the scenarios.
-3. Write test cases for the scenarios.
-6. Write the implementation code to pass the test cases for the models
-5. Define the API schema using GraphQL.
-6. Write test cases for the schema.
-5. Implement the schema with the appropriate query and mutation functions.
-7. Ensure the API is asynchronous by using async/await functions.
-8. Add Swagger UI for API documentation.
-9. Implement authentication and authorization with JWT.
-
-For the BDD part, we can use the Behave library, which is a popular Python BDD framework. It integrates well with the
-FastAPI framework, and we can write Gherkin syntax feature files that describe the behavior of the API.
-
-Let me know if you have any questions or concerns. We can proceed with the above steps and create a great API for your
-project.
-
+1. A branch for each round of development in base a every chapter of the book "Architecture Patterns with Python".
+2. A main branch with the actual state of the project.
+3. Iterations documented in the todo file.
 
 
 # Footnotes
