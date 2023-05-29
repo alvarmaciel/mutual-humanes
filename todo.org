@@ -7,6 +7,7 @@ que guarde una copia del recibo en la caja
 un cajero es un socio
 una persona es un socio
 * Capitulo 1 Domain Modeling
+- Source https://www.cosmicpython.com/book/chapter_01_domain_model.html
 ** Iteration 1
 - [x] tests for socies and cuotas
 - [x] refactor socies and cuotas
