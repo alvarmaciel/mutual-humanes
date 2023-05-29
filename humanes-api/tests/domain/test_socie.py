@@ -2,24 +2,14 @@ import pytest
 import string
 import random
 from datetime import date
-from humanes.domain.humanes import Socie
+from humanes.domain.socies import Socie
+from humanes.domain.caja import Cashier
+from humanes.domain.caja import Caja
 
 
 
-class Caja:
-    def __init__(self):
-        self.total = 0
-        self.recipies = []
 
-class Cashier:
-    def __init__(self, cashier: Socie):
-        self.cashier = cashier
 
-    def checkout(self, socie, today, cuota, caja):
-        caja.total += cuota["amount"]
-        caja.recipies.append({"socie": socie, "date": today, "amount": cuota["amount"]})
-        socie.cuotas.append(cuota)
-        socie.recipies.append({"socie": socie, "date": today, "amount": cuota["amount"]})
 
 def create_new_socie(tipo="pleno", activated=True):
     letters = string.ascii_letters
@@ -105,8 +95,8 @@ def test_cashier_can_emit_a_recipie_and_save_it_in_caja():
 
     # Verify
     assert caja.total == 100
-    assert len(caja.recipies) == 1
-    assert caja.recipies[0] == {"socie": socie, "date": today, "amount": 100}
+    assert len(caja.invoices) == 1
+    assert caja.invoices[0] == {"socie": socie, "date": today, "amount": 100}
 
 def test_cashier_can_emit_a_recipie_and_save_it_in_socie():
     # Setup
@@ -120,5 +110,23 @@ def test_cashier_can_emit_a_recipie_and_save_it_in_socie():
 
     # Verify
     assert caja.total == 100
-    assert len(socie.recipies) == 1
-    assert socie.recipies[0] == {"socie": socie, "date": today, "amount": 100}
+    assert len(socie.invoices) == 1
+    assert socie.invoices[0] == {"socie": socie, "date": today, "amount": 100}
+
+def test_cashier_can_emit_a_recipie_and_save_it_in_caja_and_socie():
+    # Setup
+    cashier = Cashier(create_new_socie(tipo="pleno", activated=True))
+    today = date(2022, 6, 1)
+    socie = create_new_socie(tipo="General", activated=True)
+    cuota = {"date": date(2022, 1, 1), "amount": 100}
+    caja = Caja()
+    # Exercise
+    cashier.checkout(socie, today, cuota, caja)
+
+    # Verify
+    assert caja.total == 100
+    assert len(socie.invoices) == 1
+    assert socie.invoices[0] == {"socie": socie, "date": today, "amount": 100}
+    assert len(caja.invoices) == 1
+    assert caja.invoices[0] == {"socie": socie, "date": today, "amount": 100}
+    assert socie.cuotas == [{"date": date(2022, 1, 1), "amount": 100}]

@@ -14,7 +14,7 @@ class Socie:
         self.activated = activated
         self.tipo = tipo
         self.cuotas = []
-        self.recipies = []
+        self.invoices = []
 
     def get_status(self, today:date)->bool:
         if self._check_and_update_status(today):
@@ -31,3 +31,4 @@ class Socie:
             return False
         else:
             return True
+
