@@ -6,9 +6,8 @@ This project is a CRUD API for the Humano Mutual. The API will be used to manage
 The main goal of the project is to follow chapter by chapter the book "Architecture Patterns with Python" by Harry J.W.
 Percival and Bob Gregory, using another domanin to the one proposed in the book.
 A second goal is to use GitHub projects to manage the task and deliverables of the project.
-The first mvp will be a simple CRUD API with to response to the necesite of the managment of the Socies of the Mutual.
-Humano Mutual is a mutual of producers and buyers, the language that they use is spanish, so the domain description will
-be in spanish, but the code will be in english.
+The first mvp will be a simple CRUD API with to response to the necesite of the management of the Socies of the Mutual.
+Humano Mutual is a mutual of producers and buyers, we will use the term socies to refer to the members of the mutual.
 
 ## Project Deliverables:
 
@@ -37,77 +36,76 @@ be in spanish, but the code will be in english.
 
 # Domiain Description of Socies
 
-Tenemos que crear una Graphql API para la Mutual Humano.
+We need to create a GraphQL API for Mutual Humano.
 
-- La mutual cuenta con socios productores y socios que compran. Para diferenciar estos tipos se propone usar la
-- categoría `adherente` para los socios productores y `humane` para los compradores.
-- Todos los socios tienen que pagar una cuota mensual, hay que llevar registro de esto pagos.
-- Si un socio no pagó la cuota mensual por más de tres meses pasa a estar `inactivo`.
-- Esto lo sabemos cuando consultamos el estado de un socio.
-- Se activa pagando la cuota del mes en curso.
-  Existe otro tipo de sujetos, los proveedores, que no son socios de la mutual, a estos se los denomina proveedores
-  Los socies tienen:
+- The mutual has producing members and buying members. To differentiate these types, it is proposed to use the
+  category 'adherente' for producing members and 'humane' for buyers.
+- All members have to pay a monthly fee, and these payments need to be recorded.
+- If a member fails to pay the monthly fee for more than three months, they become 'inactive'.
+- We determine this when we check the status of a member.
+- The member's status becomes active by paying the current month's fee.
+  There is another type of entity, the providers, who are not members of the mutual, and they are referred to as
+  providers.
 
-- Nombre(o)<sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup>
-- apellido(o)
-- emprendimiento
-- dni(o)
-- codigo(o)
-- domicilio
-- codigo postal
-- telefono
-- email
-- Puede estar Activo o No(o) default activo
-- Puede ser Pleno o No(o) sin default
+#### Members have:
+- Name(s)[^1]
+- Last name(s)
+- Venture
+- ID number(s)
+- Code(s)
+- Address
+- Postal code
+- Phone number
+- Email
+- Can be active or not[^1], default is active
+- Can be adherente or humane[^1], default value adherente
 
-Los proveedores tienen
+Providers have:
 
-- Nombre(o)<sup><a id="fnr.1.100" class="footref" href="#fn.1" role="doc-backlink">1</a></sup>
-- apellido(0)
-- emprendimiento
-- rubro
-- cuil/cuit(o)
-- codigo(o)
-- domicilio
-- codigo postal
-- telefono
-- email
+- Name(s)[^1]
+- Last name(s)
+- Venture
+- Category
+- CUIT number(s)
+- Code(s)
+- Address
+- Postal code
+- Phone number
+- Email
 
-Nuestra api debe poder:
+Our API should be able to:
 
-- crear un socio.
-- modificar un socio.
-- eliminar un socio.
-- listar todos los socios por:
-    - activos
-    - inactivos
-    - plenos
-    - generales
-- listar un socio por.
-    - dni
-    - codigo
-    - email
-- crear un proveedor.
-- modificar un proveedor.
-- eliminar un proveedor.
-- listar todos los proveedores.
-    - rubro
-- listar un proveedor.
-    - nombre
-    - apellido
-    - emprendimiento
-    - cuil/cuit
-    - código
+- Create a member.
+- Modify a member.
+- Delete a member.
+- List all members by:
+    - Active status
+    - Inactive status
+    - Full members
+    - General members
+- List a member by:
+    - ID number
+    - Code
+    - Email
+- Create a provider.
+- Modify a provider.
+- Delete a provider.
+- List all providers by:
+    - Category
+- List a provider by:
+    - Name
+    - Last name
+    - Venture
+    - CUIT number
+    - Code
 
-- La api debe poder informar automaticamente si un socio esta activo o no.
-- La api debe tener contar con un sistema de autenticación y autorización de usarios.
-- Los usuarios pueden tener roles de administrador o de usuario.
-- Los usuarios administradores pueden crear, modificar, listar y eliminar usuarios.
-- Los usuarios administradores pueden crear, modificar, listar y eliminar socios y proveedores.
-- Los usuarios no adminstradores solo pueden listar socios y proveedores.
-
-
+- The API should be able to automatically inform if a member is active or not.
+- The API should have an authentication and authorization system for users.
+- Users can have administrator or user roles.
+- Administrator users can create, modify, list, and delete users.
+- Administrator users can create, modify, list, and delete members and providers.
+- Non-administrator users can only list members and providers.
 
 # Footnotes
 
-<sup><a id="fn.1" href="#fnr.1">1</a></sup> Esto quiere decir Obligatorio
+[^1]: (o) denotes optional fields.
