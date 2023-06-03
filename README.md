@@ -34,7 +34,7 @@ Humano Mutual is a mutual of producers and buyers, we will use the term socies t
 5. Behavior Driven Development will be used with a library of your choice.
 6. Strict Test Driven Development will be used with tests written before implementation.
 
-# Domiain Description of Socies
+# Domain Description of Socies
 
 We need to create a GraphQL API for Mutual Humano.
 

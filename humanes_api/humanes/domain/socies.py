@@ -3,21 +3,35 @@ from datetime import date
 
 
 @dataclass
-class Socie:
+class AccountData:
     name: str
     last_name: str
-    business: str
+    venture: str
     dni: str
     zip_code: str
     address: str
     phone: str
     email: str
-    type: str
+
+@dataclass
+class Account:
+    account_data: AccountData
+    socie_type: str = field(default="adherente")
     fees: list[dict] = field(default_factory=list)
     invoices: list[dict] = field(default_factory=list)
     activated: bool = field(default=True)
+    provider: bool = field(default=False)
+
+    @property
+    def is_provider(self):
+        return self.provider
+    @property
+    def is_socie(self):
+        return self.socie_type is not None
 
     def get_status(self, today: date) -> bool:
+        if not self.is_socie:
+            return
         if self._check_and_update_status(today):
             self.activated = True
         else:

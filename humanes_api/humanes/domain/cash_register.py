@@ -1,6 +1,6 @@
 from dataclasses import dataclass, field
 from decimal import Decimal
-from humanes.domain.socies import Socie
+from humanes_api.humanes.domain.socies import Account
 @dataclass
 class CashRegister:
     total: Decimal = 0
@@ -8,7 +8,7 @@ class CashRegister:
 
 
 class Cashier:
-    def __init__(self, cashier: Socie, caja: CashRegister=None):
+    def __init__(self, cashier: Account, caja: CashRegister=None):
         self.cashier = cashier
         self.caja = caja
 
@@ -17,7 +17,7 @@ class Cashier:
         caja.invoices.append({"socie": socie, "date": today, "amount": cuota["amount"]})
         socie.fees.append(cuota)
         socie.invoices.append({"socie": socie, "date": today, "amount": cuota["amount"]})
-    def get_all_invoices_by_socie(self, socie:Socie)->list:
+    def get_all_invoices_by_socie(self, socie:Account)->list:
         result = []
         for invoice in self.caja.invoices:
             if invoice["socie"] == socie:
