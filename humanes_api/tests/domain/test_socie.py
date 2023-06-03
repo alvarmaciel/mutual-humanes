@@ -90,6 +90,7 @@ def test_account_is_socie():
 def test_account_is_not_socie():
     # Setup
     account = create_new_account(type=None, activated=False)
+    account.socie = False
     # Exercise
     result = account.is_socie
     # Verify
@@ -119,6 +120,7 @@ def test_account_is_provider_and_socie():
 def test_accont_is_only_provider_cant_have_status():
     # Setup
     account = create_new_account(type=None, activated=False)
+    account.socie = False
     account.provider = True
     today = date(2022, 2, 1)
     fee = [{"date": date(2022, 1, 1), "amount": 100}]

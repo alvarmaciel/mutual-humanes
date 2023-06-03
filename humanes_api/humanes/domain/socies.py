@@ -24,6 +24,7 @@ class Account:
     fees: list[dict] = field(default_factory=list)
     invoices: list[dict] = field(default_factory=list)
     activated: bool = field(default=True)
+    socie: bool = field(default=True)
     provider: bool = field(default=False)
 
     @property
@@ -31,7 +32,7 @@ class Account:
         return self.provider
     @property
     def is_socie(self):
-        return self.socie_type is not None
+        return self.socie
 
     def get_status(self, today: date) -> bool:
         if not self.is_socie:
