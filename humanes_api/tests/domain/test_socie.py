@@ -1,11 +1,9 @@
 import string
 import random
 from datetime import date
-from humanes.domain.socies import Socie
-from humanes.domain.cash_register import CashRegister, Cashier
-
-
-def create_new_socie(tipo="adherente", activated=True):
+from humanes_api.humanes.domain.socies import Socie
+from humanes_api.humanes.domain.cash_register import CashRegister, Cashier
+def create_new_socie(type: str="adherente", activated: bool =True) -> Socie:
     letters = string.ascii_letters
     numbers = string.digits
     length = 10
@@ -19,7 +17,7 @@ def create_new_socie(tipo="adherente", activated=True):
         phone=''.join(random.choice(numbers) for _ in range(length)),
         email=''.join(random.choice(letters) for _ in range(length)),
         activated=activated,
-        type=tipo, )
+        type=type, )
     return socie
 
 
@@ -65,10 +63,10 @@ def test_socie_activatesd_is_true_when_last_couta_is_less_than_3_month_today():
 def test_cashier_can_register_a_payed_fee_in_cash_register():
     # Setup
     cash_register =  CashRegister()
-    humane_socie = create_new_socie(tipo="humane", activated=True)
+    humane_socie = create_new_socie(type="humane", activated=True)
     cashier = Cashier(humane_socie)
     today = date(2022, 6, 1)
-    socie = create_new_socie(tipo="adherente", activated=True)
+    socie = create_new_socie(type="adherente", activated=True)
     fee = {"date": date(2022, 1, 1), "amount": 100}
 
     # Exercise
@@ -80,9 +78,9 @@ def test_cashier_can_register_a_payed_fee_in_cash_register():
 
 def test_cashier_can_emit_a_recipie_and_save_it_in_cash_register():
     # Setup
-    cashier = Cashier(create_new_socie(tipo="pleno", activated=True))
+    cashier = Cashier(create_new_socie(type="pleno", activated=True))
     today = date(2022, 6, 1)
-    socie = create_new_socie(tipo="General", activated=True)
+    socie = create_new_socie(type="General", activated=True)
     fee = {"date": date(2022, 1, 1), "amount": 100}
     cash_register =  CashRegister()
     # Exercise
@@ -96,9 +94,9 @@ def test_cashier_can_emit_a_recipie_and_save_it_in_cash_register():
 
 def test_cashier_can_emit_a_recipie_and_save_it_in_socie():
     # Setup
-    cashier = Cashier(create_new_socie(tipo="pleno", activated=True))
+    cashier = Cashier(create_new_socie(type="pleno", activated=True))
     today = date(2022, 6, 1)
-    socie = create_new_socie(tipo="General", activated=True)
+    socie = create_new_socie(type="General", activated=True)
     fee = {"date": date(2022, 1, 1), "amount": 100}
     cash_register =  CashRegister()
     # Exercise
@@ -112,9 +110,9 @@ def test_cashier_can_emit_a_recipie_and_save_it_in_socie():
 
 def test_cashier_can_emit_a_recipie_and_save_it_in_cash_register_and_socie():
     # Setup
-    cashier = Cashier(create_new_socie(tipo="pleno", activated=True))
+    cashier = Cashier(create_new_socie(type="pleno", activated=True))
     today = date(2022, 6, 1)
-    socie = create_new_socie(tipo="General", activated=True)
+    socie = create_new_socie(type="General", activated=True)
     fee = {"date": date(2022, 1, 1), "amount": 100}
     cash_register =  CashRegister()
     # Exercise
@@ -132,9 +130,9 @@ def test_cashier_can_emit_a_recipie_and_save_it_in_cash_register_and_socie():
 def test_cashier_can_get_all_invoices_by_socie():
     # Setup
     cash_register =  CashRegister()
-    cashier = Cashier(create_new_socie(tipo="pleno", activated=True), cash_register)
+    cashier = Cashier(create_new_socie(type="pleno", activated=True), cash_register)
     date(2022, 6, 1)
-    socie = create_new_socie(tipo="General", activated=True)
+    socie = create_new_socie(type="General", activated=True)
     fee_1 = {"date": date(2022, 1, 1), "amount": 100}
     fee_2 = {"date": date(2022, 2, 1), "amount": 100}
     fee_3 = {"date": date(2022, 3, 1), "amount": 100}
