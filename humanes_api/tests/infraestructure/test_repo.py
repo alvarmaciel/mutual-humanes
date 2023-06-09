@@ -11,9 +11,9 @@ def insert_account_data(session):
              "('Ianthe', 'Thridentarus', '', '12346', '234', 'third house', '2234', 'ianthe@theninth.com')"
     stmt = text(insert)
     session.execute(stmt)
-    query = text("SELECT id FROM accounts_data WHERE dni='1234'")
-    account_data_id = session.execute(query).fetchall()
-    return account_data_id
+    query = text("SELECT id FROM accounts_data")
+    accounts_data_id = session.execute(query).fetchall()
+    return accounts_data_id
 
 
 def test_repository_can_save_an_account_data(session):
@@ -43,8 +43,14 @@ def test_repository_can_get_saved_account_data(session):
     # Verify
     expected = AccountData(name='Gideon', last_name='Nav', venture='', dni='1234', zip_code='234',
                            address='ninth house', phone='1234', email='gideon_rocks@theninth.com')
-    assert retrieved == expected  # Batch.__eq__ only compares reference
-
+    assert retrieved == expected
 
 def test_repository_can_list_saved_account_data(session):
-    raise NotImplementedError
+    # Setup
+    accounts_data=insert_account_data(session)
+    # Exercise
+    repo = repository.AccountDataRepository(session)
+    retrieved = repo.list()
+
+    # Verify
+    assert len(retrieved) == len(accounts_data)
