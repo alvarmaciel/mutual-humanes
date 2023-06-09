@@ -1,18 +1,17 @@
-import abc
-from humanes_api.humanes.domain.socies import AccountData
+from typing import Protocol, TypeVar, Union
+import typing
+from humanes_api.humanes.domain.socies import AccountData, Account
+
+T = TypeVar('T', bound=Union[AccountData, Account])
+@typing.runtime_checkable
+class Repository(Protocol[T]):
+    def add(self, *args, **kwargs) -> None:
+        ...
+    def get(self, *args, **kwargs) -> T | None:
+        ...
 
 
-class AbstractRepository(metaclass=abc.ABCMeta):
-    @abc.abstractmethod
-    def add(self, account_data: AccountData) -> None:
-        raise NotImplementedError
-
-    @abc.abstractmethod
-    def get(self, reference) -> AccountData | None:
-        raise NotImplementedError
-
-
-class AccountDataRepository(AbstractRepository):
+class AccountDataRepository:
     def __init__(self, session):
         self.session = session
 
