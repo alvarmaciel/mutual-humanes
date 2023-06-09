@@ -16,3 +16,10 @@ def test_repository_can_save_an_account_data(session):
     query = text("SELECT name, last_name, venture, dni FROM 'accounts_data'")
     results = session.execute(query).fetchall()
     assert results == [("a name", "a last name", "", "123456")]
+
+def test_repository_can_get_saved_account_data(session):
+    raise NotImplementedError
+
+def test_repository_can_list_saved_account_data(session):
+    raise NotImplementedError
+
