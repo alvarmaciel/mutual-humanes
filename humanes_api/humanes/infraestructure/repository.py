@@ -20,7 +20,7 @@ class AccountDataRepository(AbstractRepository):
         self.session.add(account_data)
 
     def get(self, reference):
-        return self.session.query(AccountData).filter_by(reference=reference).one()
+        return self.session.query(AccountData).filter_by(dni=reference).one()
 
     def list(self):
         return self.session.query(AccountData).all()
