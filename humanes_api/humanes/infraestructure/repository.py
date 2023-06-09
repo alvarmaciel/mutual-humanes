@@ -1,9 +1,9 @@
-from typing import Protocol, TypeVar, Union
-import typing
+from typing import Protocol, TypeVar, Union, runtime_checkable
+
 from humanes_api.humanes.domain.socies import AccountData, Account
 
 T = TypeVar('T', bound=Union[AccountData, Account])
-@typing.runtime_checkable
+@runtime_checkable
 class Repository(Protocol[T]):
     def add(self, *args, **kwargs) -> None:
         ...
