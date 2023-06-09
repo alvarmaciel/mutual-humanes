@@ -4,7 +4,7 @@ from humanes_api.humanes.domain.socies import AccountData
 
 class AbstractRepository(metaclass=abc.ABCMeta):
     @abc.abstractmethod
-    def add(self, account_data: AccountData):
+    def add(self, account_data: AccountData) -> None:
         raise NotImplementedError
 
     @abc.abstractmethod
