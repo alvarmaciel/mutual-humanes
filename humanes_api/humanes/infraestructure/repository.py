@@ -8,7 +8,7 @@ class AbstractRepository(metaclass=abc.ABCMeta):
         raise NotImplementedError
 
     @abc.abstractmethod
-    def get(self, reference) -> AccountData:
+    def get(self, reference) -> AccountData | None:
         raise NotImplementedError
 
 
